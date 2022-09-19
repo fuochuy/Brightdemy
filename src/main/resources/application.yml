@@ -1,0 +1,10 @@
+spring.security:
+  user:
+    name: admin
+    password: 1234
+springdoc:
+  api-docs:
+    path: /openapi/v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+  packages-to-scan: hcmus.brightdemy
