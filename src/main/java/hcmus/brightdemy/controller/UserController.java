@@ -24,7 +24,7 @@ public class UserController {
     @PostMapping(value = ContextPath.User.CREATE_USER)
     public ResponseEntity<?> createUser(@RequestBody User user) {
 
-        if (userService.checkUserExist(user.getEmail()) != null) {
+        if (userService.checkUserExist(user.getUsername()) != null) {
             Response response = Response.builder()
                     .code(400)
                     .message("email is already in use, please choose another email")

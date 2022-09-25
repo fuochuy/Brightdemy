@@ -26,6 +26,10 @@ public class User {
     @Column(name = "id")
     private int id;
 
+    @Column(name = "username")
+    @NotBlank
+    private String username;
+
     @Column(name = "full_name")
     @NotBlank
     private String fullName;
@@ -48,8 +52,8 @@ public class User {
     @Column(name ="token")
     private String token;
 
-    @Column(name ="is_block")
-    private boolean isBlock;
+    @Column(name ="status")
+    private int status;
 
     @Column(name ="created_at")
     @CreationTimestamp

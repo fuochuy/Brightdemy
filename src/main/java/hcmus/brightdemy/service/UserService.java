@@ -7,7 +7,7 @@ import java.util.List;
 public interface UserService {
     int createUser(User user);
 
-    User  checkUserExist(String email);
+    User  checkUserExist(String username);
 
     List<User> getListUser();
 }
