@@ -10,4 +10,8 @@ public interface UserService {
     User  checkUserExist(String username);
 
     List<User> getListUser();
+
+    void deleteUser(int id);
+
+    User findById(int id);
 }

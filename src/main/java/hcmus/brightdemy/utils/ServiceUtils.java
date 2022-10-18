@@ -1,6 +1,7 @@
 package hcmus.brightdemy.utils;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.servlet.ServletInputStream;
 import java.io.IOException;
@@ -32,5 +33,9 @@ public class ServiceUtils {
             out.append(buffer, 0, index);
         }
         return out.toString();
+    }
+    public static String encodePassword(String password) {
+        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder(10);
+        return bCryptPasswordEncoder.encode(password);
     }
 }

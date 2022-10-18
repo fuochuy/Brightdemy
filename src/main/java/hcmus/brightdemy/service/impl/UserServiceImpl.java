@@ -3,6 +3,7 @@ package hcmus.brightdemy.service.impl;
 import hcmus.brightdemy.model.User;
 import hcmus.brightdemy.repository.UserRepository;
 import hcmus.brightdemy.service.UserService;
+import hcmus.brightdemy.utils.ServiceUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     public int createUser(User user) {
+        user.setPassword(ServiceUtils.encodePassword(user.getPassword()));
         User newUser = userRepository.save(user);
         return newUser.getId();
     }
@@ -38,6 +40,17 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     public List<User> getListUser() {
         return userRepository.findAll();
+    }
+
+    @Override
+    public void deleteUser(int id) {
+        userRepository.deleteById((long)id);
+    }
+
+    @Override
+    public User findById(int id) {
+       return userRepository.findById(id);
+
     }
 
     @Override

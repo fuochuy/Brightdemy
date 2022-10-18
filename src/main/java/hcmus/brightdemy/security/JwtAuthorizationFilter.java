@@ -45,24 +45,24 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
                 } catch (SignatureException e) {
                     log.error("CUSTOM LOGGER ----------- Authentication failed. Username and password not valid: ", e);
                 }
-            }
-        } else if (header.startsWith(SecurityConstant.TOKEN_PREFIX_SECRET)) {
-            authToken = header.replace(SecurityConstant.TOKEN_PREFIX_SECRET, "");
-            if (authToken.equals(SecurityConstant.TOKEN_SECRET)) {
-                UserDetails user =userDetailsService.loadUserByUsername(Constant.ADMIN_NAME);
-                if (user != null) {
-                    UsernamePasswordAuthenticationToken authentication = tokenProvider.getAuthenticationSecret(
-                            authToken,
-                            SecurityContextHolder.getContext().getAuthentication(),
-                            user
-                    );
+            } else if (header.startsWith(SecurityConstant.TOKEN_PREFIX_SECRET)) {
+                authToken = header.replace(SecurityConstant.TOKEN_PREFIX_SECRET, "");
+                if (authToken.equals(SecurityConstant.TOKEN_SECRET)) {
+                    UserDetails user = userDetailsService.loadUserByUsername(Constant.ADMIN_NAME);
+                    if (user != null) {
+                        UsernamePasswordAuthenticationToken authentication = tokenProvider.getAuthenticationSecret(
+                                authToken,
+                                SecurityContextHolder.getContext().getAuthentication(),
+                                user
+                        );
 
-                    authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-                    SecurityContextHolder.getContext().setAuthentication(authentication);
+                        authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+                        SecurityContextHolder.getContext().setAuthentication(authentication);
+                    }
                 }
             }
-        }else {
-            log.warn("CUSTOM LOGGER ----------- Couldn't find bearer string, will ignore the header");
+        } else {
+            log.warn("CUSTOM LOGGER --------- Couldn't find bearer string, will ignore the header");
         }
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             if (!header.startsWith(SecurityConstant.TOKEN_PREFIX_SECRET)) {

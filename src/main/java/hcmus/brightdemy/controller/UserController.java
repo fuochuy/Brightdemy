@@ -50,4 +50,24 @@ public class UserController {
                 .build();
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
+
+    @PostMapping(value = ContextPath.User.DELETE)
+    public ResponseEntity<?> deleteUser(@RequestBody User user) {
+
+        if (userService.findById(user.getId()) != null) {
+            userService.deleteUser(user.getId());
+            Response response = Response.builder()
+                    .code(200)
+                    .message("success")
+                    .data(user.getId())
+                    .build();
+            return new ResponseEntity<>(response, HttpStatus.OK);
+        }
+        Response response = Response.builder()
+                .code(400)
+                .message("user not exist")
+                .data(user.getId())
+                .build();
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
 }

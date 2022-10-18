@@ -14,7 +14,6 @@ import org.springframework.security.config.annotation.authentication.configurati
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.security.core.session.SessionRegistryImpl;
@@ -26,7 +25,6 @@ import org.springframework.security.web.session.HttpSessionEventPublisher;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 
 import javax.annotation.Resource;
 
@@ -49,7 +47,7 @@ public class SecurityConfig {
         http.sessionManagement().maximumSessions(1).sessionRegistry(sessionRegistry());
         // Pages to be permitted (NO ROLE)
         http.authorizeRequests()
-                .antMatchers("/*").permitAll();
+                .antMatchers("/swagger-ui/**,/openapi/**,/login").permitAll();
 
 
         http.cors().and().csrf().disable()
@@ -109,10 +107,5 @@ public class SecurityConfig {
         source.registerCorsConfiguration("/**", new CorsConfiguration().applyPermitDefaultValues());
         return source;
     }
-    @Bean
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry
-                .addResourceHandler("/**")
-                .addResourceLocations("/");
-    }
+
 }
