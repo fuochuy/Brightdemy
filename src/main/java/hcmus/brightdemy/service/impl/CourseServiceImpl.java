@@ -1,6 +1,6 @@
 package hcmus.brightdemy.service.impl;
 
-import hcmus.brightdemy.model.Course;
+import hcmus.brightdemy.entity.Course;
 import hcmus.brightdemy.repository.CourseRepository;
 import hcmus.brightdemy.service.CourseService;
 import lombok.RequiredArgsConstructor;

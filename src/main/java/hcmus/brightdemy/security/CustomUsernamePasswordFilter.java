@@ -2,7 +2,7 @@ package hcmus.brightdemy.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import hcmus.brightdemy.constant.ResponseMessage;
-import hcmus.brightdemy.model.User;
+import hcmus.brightdemy.entity.User;
 import hcmus.brightdemy.repository.UserRepository;
 import hcmus.brightdemy.utils.ResponseUtils;
 import hcmus.brightdemy.utils.ServiceUtils;
@@ -95,9 +95,7 @@ public class CustomUsernamePasswordFilter extends UsernamePasswordAuthentication
         SecurityContextHolder.clearContext();
         User user = repository.findByUsername(userName);
         if (user != null) {
-            if (repository.findById(user.getId()).getRole().equals("USER")) {
-                user.setStatus(user.getStatus() + 1);
-            }
+            user.setStatus(user.getStatus() + 1);
             repository.save(user);
         }
         responseToClient(new JSONObject(ResponseUtils.buildResponse(ResponseMessage.LOGIN_FAIL)).toString(), response);

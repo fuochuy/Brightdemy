@@ -1,7 +1,7 @@
 package hcmus.brightdemy.controller;
 
 import hcmus.brightdemy.constant.ContextPath;
-import hcmus.brightdemy.model.Response;
+import hcmus.brightdemy.entity.Response;
 import hcmus.brightdemy.service.CourseService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

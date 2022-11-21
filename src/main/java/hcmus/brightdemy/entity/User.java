@@ -1,15 +1,15 @@
-package hcmus.brightdemy.model;
+package hcmus.brightdemy.entity;
 
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
+
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -23,7 +23,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 @Table(schema = "users")
 public class User {
     @Id
-    @Column(name = "id")
+    @Column(name = "user_id")
     private int id;
 
     @Column(name = "username")
@@ -45,9 +45,13 @@ public class User {
     @Size(max = 120)
     private String password;
 
-    @Column(name = "role")
-    @NotBlank
-    private String role;
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "users_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
+    private Set<Role> roles = new HashSet<>();
 
     @Column(name ="token")
     private String token;

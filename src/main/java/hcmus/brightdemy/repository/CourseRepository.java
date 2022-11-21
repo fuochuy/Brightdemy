@@ -1,6 +1,6 @@
 package hcmus.brightdemy.repository;
 
-import hcmus.brightdemy.model.Course;
+import hcmus.brightdemy.entity.Course;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

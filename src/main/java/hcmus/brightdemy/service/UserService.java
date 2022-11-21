@@ -1,6 +1,6 @@
 package hcmus.brightdemy.service;
 
-import hcmus.brightdemy.model.User;
+import hcmus.brightdemy.entity.User;
 
 import java.util.List;
 

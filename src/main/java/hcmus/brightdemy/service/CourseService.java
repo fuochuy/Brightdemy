@@ -1,6 +1,6 @@
 package hcmus.brightdemy.service;
 
-import hcmus.brightdemy.model.Course;
+import hcmus.brightdemy.entity.Course;
 
 import java.util.List;
 

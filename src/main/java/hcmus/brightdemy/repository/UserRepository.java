@@ -1,6 +1,6 @@
 package hcmus.brightdemy.repository;
 
-import hcmus.brightdemy.model.User;
+import hcmus.brightdemy.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

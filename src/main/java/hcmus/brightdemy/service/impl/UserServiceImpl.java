@@ -1,6 +1,7 @@
 package hcmus.brightdemy.service.impl;
 
-import hcmus.brightdemy.model.User;
+import hcmus.brightdemy.entity.User;
+import hcmus.brightdemy.repository.RoleRepository;
 import hcmus.brightdemy.repository.UserRepository;
 import hcmus.brightdemy.service.UserService;
 import hcmus.brightdemy.utils.ServiceUtils;
@@ -24,6 +25,9 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private RoleRepository roleRepository;
 
     @Override
     public int createUser(User user) {
@@ -67,7 +71,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     private Set<SimpleGrantedAuthority> getAuthorities(User user) {
         Set<SimpleGrantedAuthority> authorities = new HashSet<>();
-        authorities.add(new SimpleGrantedAuthority( userRepository.findById(user.getId()).getRole()));
+        user.getRoles().forEach(role -> authorities.add(new SimpleGrantedAuthority("ROLE_" + role.getName())));
         return authorities;
     }
 }
