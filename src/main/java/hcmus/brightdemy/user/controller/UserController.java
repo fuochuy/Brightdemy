@@ -15,6 +15,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
+@RequestMapping(value = ContextPath.User.PATH)
 public class UserController {
     @Autowired
     private UserService userService;

@@ -27,7 +27,7 @@ public class SwaggerConfig {
                 .securityContexts(Arrays.asList(securityContext()))
                 .securitySchemes(Arrays.asList(apiKey()))
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("hcmus.brightDemy.api"))
+                .apis(RequestHandlerSelectors.basePackage("hcmus.brightdemy"))
                 .build()
                 .apiInfo(apiInfo());
     }

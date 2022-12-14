@@ -47,21 +47,26 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        // cấu hình CORS
         http.cors();
 
         // cấu hình session
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
-        // thêm filter để validate jwt token
-        http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
-
         // disable csrf
         http.csrf().disable();
 
+        // add jwt filter
+        http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+
         // cấu hình xác thực cho các api
-        http.antMatcher("/**").authorizeRequests()
-                .antMatchers(AUTH_WHITELIST).permitAll()
+        http.antMatcher("/*").authorizeRequests()
+                .antMatchers("/**").permitAll()
+                .antMatchers("/swagger-ui.html").permitAll()
+                .antMatchers("/swagger-ui/**").permitAll()
+                .antMatchers("/openapi/**").permitAll()
+                .antMatchers("/api/login").permitAll()
+                .antMatchers("/api/users").permitAll()
+                .antMatchers("/api/**").permitAll()
                 .anyRequest().authenticated();
 
     }

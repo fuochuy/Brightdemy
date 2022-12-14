@@ -21,25 +21,18 @@ import java.util.Date;
 public class CreateUserDTO {
     private static final long serialVersionUID = 4766770617680553069L;
 
-    @NotBlank(message = "{user.username.not-blank}")
-    @Size(min = 3, max = 30, message = "{user.username.size}")
-    @UniqueUsername
+
     private String username;
 
-    @NotBlank
-    @Size(min = 3, max = 30, message = "{user.full_name.size}")
+
     private String fullName;
 
-    @NotBlank
-    @Email
-    @UniqueEmail
+
     private String email;
 
-    @NotBlank
-    @Size(max = 120)
+
     private String password;
-    @NotBlank(message = "{user.roleId.not_blank}")
-    @ExistedRoleId
+
     private int roleId;
 
 }

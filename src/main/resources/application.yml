@@ -21,9 +21,6 @@ spring:
       enabled: true
       max-file-size: 200GB
       max-request-size: 215GB
-  mvc:
-    pathmatch:
-      matching-strategy: ant-path-matcher
 
 server:
   port: 8090

@@ -2,6 +2,7 @@ package hcmus.brightdemy.role.entity;
 
 import hcmus.brightdemy.common.entity.BaseEntity;
 import hcmus.brightdemy.user.entity.User;
+import lombok.Generated;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -18,6 +19,7 @@ public class Role extends BaseEntity {
 
     @Id
     @Column(name = "role_id")
+    @GeneratedValue
     private int role_id;
 
     @Column(name = "name", unique = true, nullable = false)

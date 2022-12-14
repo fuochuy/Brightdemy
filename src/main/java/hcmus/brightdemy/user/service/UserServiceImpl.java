@@ -31,7 +31,7 @@ public class UserServiceImpl implements UserService{
         User user = UserMapper.INSTANCE.fromCreateUserDTOToEntity(dto);
         user.setPassword(encoder.encode(dto.getPassword()));
 
-        Optional<Role> roleOpt = roleRepository.findById(String.valueOf(dto.getRoleId()));
+        Optional<Role> roleOpt = roleRepository.findByRoleId(dto.getRoleId());
         if (!roleOpt.isPresent()) {
             throw new InvalidDataException("Role is not existed. ");
         } else {
