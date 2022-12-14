@@ -1,6 +1,6 @@
 package hcmus.brightdemy.constant;
 
-import hcmus.brightdemy.utils.ServiceUtils;
+import hcmus.brightdemy.common.utils.ServiceUtils;
 
 import java.util.Arrays;
 import java.util.HashMap;
