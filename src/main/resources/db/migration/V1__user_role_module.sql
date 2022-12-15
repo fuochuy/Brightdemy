@@ -23,4 +23,10 @@ CREATE TABLE IF NOT EXISTS users(
     role_id int,
     primary key (user_id)
     );
-CREATE sequence hibernate_sequence start 1 increment 1;
+CREATE sequence hibernate_sequence start 4 increment 1;
+insert into role(role_id,name,description)
+values(0,'USER','USER'),
+      (1,'ADMIN','ADMIN'),
+      (2,'OWNER','OWNER');
+insert into users(user_id, username,full_name,email, password,status,role_id)
+values(3,'admin','adminn','admin@brightdemy.com','$2a$10$R5hPELUnSGIhzcn5kodVSeBIOZuPxx4Ixy9V3wfJJR5i56yHaPXZm',0,1);
