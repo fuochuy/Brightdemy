@@ -5,6 +5,7 @@ import hcmus.brightdemy.security.dto.CustomUserDetails;
 import hcmus.brightdemy.security.dto.LoginDTO;
 import hcmus.brightdemy.security.exception.BrightdemyIncorrectLoginException;
 import hcmus.brightdemy.security.jwt.JwtUtils;
+import hcmus.brightdemy.user.dto.UserMapper;
 import hcmus.brightdemy.user.entity.User;
 import hcmus.brightdemy.user.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,6 +50,9 @@ public class AuthServiceImpl implements AuthService {
         if (!encoder.matches(dto.getPassword(), encodedPassword)) {
             throw new BrightdemyIncorrectLoginException("username or password is not correct");
         }
+        if(userOpt.get().getStatus() == -1){
+            throw new BrightdemyIncorrectLoginException("Your account has been locked, contact admin for help");
+        }
 
         // 3. create authentication and set into SecurityContext
         CustomUserDetails user = (CustomUserDetails) userDetailsService.loadUserByUsername(dto.getUsername());
@@ -58,6 +62,8 @@ public class AuthServiceImpl implements AuthService {
 
         // 4. generate jwt token
         String token = jwtUtils.generateJwtToken(auth);
+        userOpt.get().setToken(token);
+        userRepository.save(userOpt.get());
 
 
         //5. add necessary information into map

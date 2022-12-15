@@ -10,4 +10,6 @@ public interface UserService {
     UserDTO create(CreateUserDTO dto);
 
     List<UserDTO> searchUser(String key, Pageable pageable);
+
+    List<UserDTO> list();
 }

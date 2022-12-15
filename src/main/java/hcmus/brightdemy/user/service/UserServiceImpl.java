@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepository userRepository;
@@ -26,6 +26,7 @@ public class UserServiceImpl implements UserService{
     private RoleRepository roleRepository;
     @Autowired
     private PasswordEncoder encoder;
+
     @Override
     public UserDTO create(CreateUserDTO dto) {
         User user = UserMapper.INSTANCE.fromCreateUserDTOToEntity(dto);
@@ -57,6 +58,19 @@ public class UserServiceImpl implements UserService{
         } else {
             users = userRepository.findAll();
         }
+
+        for (User user : users) {
+            UserDTO userDTO = UserMapper.INSTANCE.fromEntityToUserDTO(user);
+            userDTO.setRoleId(user.getRole().getRole_id());
+            userDTOs.add(userDTO);
+        }
+        return userDTOs;
+    }
+
+    @Override
+    public List<UserDTO> list() {
+        List<User> users = userRepository.findAll();
+        List<UserDTO> userDTOs = new LinkedList<>();
 
         for (User user : users) {
             UserDTO userDTO = UserMapper.INSTANCE.fromEntityToUserDTO(user);

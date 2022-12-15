@@ -48,4 +48,9 @@ public class UserController {
         List<UserDTO> userDTOS = userService.searchUser(key, null);
         return new ResponseEntity<>(userDTOS, HttpStatus.OK);
     }
+    @GetMapping(ContextPath.User.LIST)
+    public Object list(@RequestHeader String authorization) {
+        List<UserDTO> userDTOS = userService.list();
+        return new ResponseEntity<>(userDTOS, HttpStatus.OK);
+    }
 }

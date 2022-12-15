@@ -28,6 +28,7 @@ public class AuthController {
             return ResponseHandler.getErrorResponse(bindingResult, HttpStatus.BAD_REQUEST);
         }
         Object token = authService.login(dto);
+
         return new ResponseEntity<>(token, HttpStatus.OK);
     }
 

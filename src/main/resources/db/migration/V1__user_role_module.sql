@@ -20,6 +20,7 @@ CREATE TABLE IF NOT EXISTS users(
     email varchar(255) not null,
     password varchar(255) not null,
     status int,
+    token varchar(1000),
     role_id int,
     primary key (user_id)
     );
