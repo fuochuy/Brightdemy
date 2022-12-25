@@ -32,7 +32,7 @@ public class RoleController {
     }
     @GetMapping(ContextPath.Role.LIST)
     public Object getRoles() {
-        List<RoleDTO> loaiNguoiDungs = roleService.findAll();
-        return new ResponseEntity<>(loaiNguoiDungs, HttpStatus.OK);
+        List<RoleDTO> roleDTOs = roleService.findAll();
+        return new ResponseEntity<>(roleDTOs, HttpStatus.OK);
     }
 }

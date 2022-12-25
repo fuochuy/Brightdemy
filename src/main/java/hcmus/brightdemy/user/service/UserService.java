@@ -1,6 +1,7 @@
 package hcmus.brightdemy.user.service;
 
 import hcmus.brightdemy.user.dto.CreateUserDTO;
+import hcmus.brightdemy.user.dto.RegisterUserDTO;
 import hcmus.brightdemy.user.dto.UserDTO;
 import org.springframework.data.domain.Pageable;
 
@@ -12,4 +13,6 @@ public interface UserService {
     List<UserDTO> searchUser(String key, Pageable pageable);
 
     List<UserDTO> list();
+
+    UserDTO register(RegisterUserDTO dto);
 }

@@ -12,4 +12,5 @@ public interface UserMapper {
     User fromUserDTOToEntity (UserDTO dto);
 
     User fromCreateUserDTOToEntity (CreateUserDTO dto);
+    User fromRegisterUserDTOToEntity (RegisterUserDTO dto);
 }

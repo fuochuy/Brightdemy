@@ -59,16 +59,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
         // cấu hình xác thực cho các api
-        http.antMatcher("/*").authorizeRequests()
-                .antMatchers("/**").permitAll()
-                .antMatchers("/swagger-ui.html").permitAll()
+        // cấu hình xác thực cho các api
+        http.antMatcher("/**").authorizeRequests()
+                .antMatchers(AUTH_WHITELIST).permitAll()
                 .antMatchers("/swagger-ui/**").permitAll()
                 .antMatchers("/openapi/**").permitAll()
                 .antMatchers("/api/login").permitAll()
                 .antMatchers("/api/users").permitAll()
                 .antMatchers("/api/**").permitAll()
                 .anyRequest().authenticated();
-
+        //http.authorizeRequests().antMatchers("/admin/**").access("hasRole('ADMIN')");
+        //http.authorizeRequests().and().exceptionHandling().accessDeniedPage("/403");
     }
 
     private static final String[] AUTH_WHITELIST = {
@@ -78,6 +79,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             "/webjars/**",
             "/configuration/ui",
             "/configuration/security",
-            "/api/**"
+            "/api/**",
+            "/login"
     };
 }

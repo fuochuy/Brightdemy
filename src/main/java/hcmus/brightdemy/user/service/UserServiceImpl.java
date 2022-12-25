@@ -4,6 +4,7 @@ import hcmus.brightdemy.common.exception.InvalidDataException;
 import hcmus.brightdemy.role.entity.Role;
 import hcmus.brightdemy.role.repository.RoleRepository;
 import hcmus.brightdemy.user.dto.CreateUserDTO;
+import hcmus.brightdemy.user.dto.RegisterUserDTO;
 import hcmus.brightdemy.user.dto.UserDTO;
 import hcmus.brightdemy.user.dto.UserMapper;
 import hcmus.brightdemy.user.entity.User;
@@ -78,5 +79,22 @@ public class UserServiceImpl implements UserService {
             userDTOs.add(userDTO);
         }
         return userDTOs;
+    }
+
+    @Override
+    public UserDTO register(RegisterUserDTO dto) {
+        User user = UserMapper.INSTANCE.fromRegisterUserDTOToEntity(dto);
+        user.setPassword(encoder.encode(dto.getPassword()));
+
+        Optional<Role> roleOpt = roleRepository.findByRoleId(0);
+        if (!roleOpt.isPresent()) {
+            throw new InvalidDataException("Role is not existed. ");
+        } else {
+            user.setRole(roleOpt.get());
+        }
+        User createUser = userRepository.save(user);
+        UserDTO userDTO = UserMapper.INSTANCE.fromEntityToUserDTO(createUser);
+        userDTO.setRoleId(createUser.getRole().getRole_id());
+        return userDTO;
     }
 }
