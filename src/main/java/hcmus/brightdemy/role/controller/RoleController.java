@@ -17,7 +17,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin(origins = ContextPath.CROSS_PATH)
-@RequestMapping(ContextPath.Role.PATH)
+@RequestMapping()
 public class RoleController {
     @Autowired
     private RoleService roleService;
