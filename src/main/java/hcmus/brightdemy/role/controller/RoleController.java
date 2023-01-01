@@ -16,8 +16,8 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = ContextPath.CROSS_PATH)
-@RequestMapping()
+@CrossOrigin
+@RequestMapping(ContextPath.Role.PATH)
 public class RoleController {
     @Autowired
     private RoleService roleService;

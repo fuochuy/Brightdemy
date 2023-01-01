@@ -18,7 +18,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = ContextPath.User.PATH)
-@CrossOrigin()
+@CrossOrigin
 public class UserController {
     @Autowired
     private UserService userService;
