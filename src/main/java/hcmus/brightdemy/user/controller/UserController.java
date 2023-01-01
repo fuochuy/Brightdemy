@@ -23,7 +23,7 @@ public class UserController {
     @Autowired
     private UserService userService;
     @PreAuthorize("hasAuthority('ADMIN')")
-    @PostMapping(ContextPath.User.CREATE_USER)
+    @PostMapping(ContextPath.Admin.CREATE_USER)
     public Object createUser(@RequestHeader String authorization, @Valid @RequestBody CreateUserDTO dto,
                                   BindingResult bindingResult) {
 
