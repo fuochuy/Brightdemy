@@ -7,6 +7,8 @@ public class ContextPath {
     public static class Admin{
         public static final String CREATE_USER = "/admin/create";
         public static final String DELETE = "/delete";
+
+        public static final String BLOCK = "/block";
     }
     public static class User {
         public static final String  PATH = "/api";
@@ -14,6 +16,8 @@ public class ContextPath {
 
         public static final String REGISTER = "/user/register";
         public static final String SEARCH = "/user/search";
+
+        public static final String UPDATE ="/user/update";
 
 
         public static final String GET_USER_BY_TOKEN = "/user/get-by-token";

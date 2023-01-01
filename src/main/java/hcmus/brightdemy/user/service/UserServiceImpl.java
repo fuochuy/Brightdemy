@@ -108,4 +108,52 @@ public class UserServiceImpl implements UserService {
         userDTO.setRoleId(user.get().getRole().getRole_id());
         return userDTO;
     }
+
+    @Override
+    public void checkRole(String authorization) {
+        String[] token = authorization.split(" ");
+        Optional<User> user = userRepository.findByToken(token[1]);
+        if (!user.isPresent()) {
+            throw new InvalidDataException("User is not existed. ");
+        }
+        if(!user.get().getRole().getName().equals("ADMIN")){
+            throw new InvalidDataException("You don't have permission");
+        }
+    }
+
+    @Override
+    public void deleteUserById(int id) {
+        Optional<User> user = userRepository.findById(id);
+        if (!user.isPresent()) {
+            throw new InvalidDataException("User is not existed. ");
+        }
+        userRepository.delete(user.get());
+    }
+
+    @Override
+    public void blockUserById(int id) {
+        Optional<User> user = userRepository.findById(id);
+        if (!user.isPresent()) {
+            throw new InvalidDataException("User is not existed. ");
+        }
+        user.get().setStatus(1);
+        userRepository.save(user.get());
+    }
+
+    @Override
+    public UserDTO updateUser(String authorization,RegisterUserDTO userDTO) {
+        String token[] = authorization.split(" ");
+        Optional<User> user = userRepository.findByToken(token[1]);
+        if (!user.isPresent()) {
+            throw new InvalidDataException("User is not existed. ");
+        }
+        if(!userDTO.getFullName().isEmpty()){
+            user.get().setFullName(userDTO.getFullName());
+        }
+        if(!userDTO.getEmail().isEmpty()){
+            user.get().setFullName(userDTO.getEmail());
+        }
+        userRepository.save(user.get());
+        return UserMapper.INSTANCE.fromEntityToUserDTO(user.get());
+    }
 }

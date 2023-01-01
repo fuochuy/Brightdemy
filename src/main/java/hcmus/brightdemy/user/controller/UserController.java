@@ -30,10 +30,26 @@ public class UserController {
         if (bindingResult.hasErrors()) {
             return ResponseHandler.getErrorResponse(bindingResult, HttpStatus.BAD_REQUEST);
         }
-
+        userService.checkRole(authorization);
         UserDTO createUser = userService.create(dto);
 
         return new ResponseEntity<>(createUser, HttpStatus.OK);
+    }
+
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @PostMapping(ContextPath.Admin.DELETE + "/{id}")
+    public Object deleteUserById(@RequestHeader String authorization,@PathVariable int id) {
+        userService.checkRole(authorization);
+        userService.deleteUserById(id);
+        return new ResponseEntity<>("Success", HttpStatus.OK);
+    }
+
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @PostMapping(ContextPath.Admin.BLOCK + "/{id}")
+    public Object blockUserById(@RequestHeader String authorization,@PathVariable int id) {
+        userService.checkRole(authorization);
+        userService.blockUserById(id);
+        return new ResponseEntity<>("Success", HttpStatus.OK);
     }
 
     @PostMapping(ContextPath.User.REGISTER)
@@ -61,5 +77,15 @@ public class UserController {
     public Object getByToken(@RequestBody String token){
         UserDTO userDTO = userService.getByToken(token);
         return new ResponseEntity<>(userDTO, HttpStatus.OK);
+    }
+    @PutMapping(ContextPath.User.UPDATE)
+    public Object updateUser(@RequestHeader String authorization, @RequestBody RegisterUserDTO usersDTO,BindingResult bindingResult) {
+
+        if (bindingResult.hasErrors()) {
+            return ResponseHandler.getErrorResponse(bindingResult, HttpStatus.BAD_REQUEST);
+        }
+        UserDTO userDTO = userService.updateUser(authorization,usersDTO);
+        return new ResponseEntity<>(userDTO, HttpStatus.OK);
+
     }
 }

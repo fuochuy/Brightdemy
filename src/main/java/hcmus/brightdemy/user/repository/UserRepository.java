@@ -24,4 +24,7 @@ public interface UserRepository extends JpaRepository<User,String> {
     List<User> findByUsernameContainingOrFullNameContaining(String key, String fullName, Pageable pageable);
 
     Optional<User> findByToken(String token);
+    @Query("FROM User user where user.id=?1")
+    Optional<User> findById(int id);
+    void delete(User user);
 }

@@ -17,4 +17,12 @@ public interface UserService {
     UserDTO register(RegisterUserDTO dto);
 
     UserDTO getByToken(String token);
+
+    void checkRole(String authorization);
+
+    void deleteUserById(int id);
+
+    void blockUserById(int id);
+
+    UserDTO updateUser(String authorization,RegisterUserDTO userDTO);
 }

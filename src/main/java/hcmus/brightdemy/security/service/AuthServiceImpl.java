@@ -50,7 +50,7 @@ public class AuthServiceImpl implements AuthService {
         if (!encoder.matches(dto.getPassword(), encodedPassword)) {
             throw new BrightdemyIncorrectLoginException("username or password is not correct");
         }
-        if(userOpt.get().getStatus() == -1){
+        if(userOpt.get().getStatus() == 1){
             throw new BrightdemyIncorrectLoginException("Your account has been locked, contact admin for help");
         }
 
