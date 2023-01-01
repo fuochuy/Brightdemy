@@ -37,4 +37,10 @@ public class RoleController {
         List<RoleDTO> roleDTOs = roleService.findAll();
         return new ResponseEntity<>(roleDTOs, HttpStatus.OK);
     }
+    @GetMapping("/{id}")
+    public Object findById(@PathVariable int id){
+        RoleDTO roleDTO = roleService.findById(id);
+        return new ResponseEntity<>(roleDTO, HttpStatus.OK);
+    }
+
 }

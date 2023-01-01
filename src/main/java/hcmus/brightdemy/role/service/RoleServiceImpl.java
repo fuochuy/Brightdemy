@@ -1,5 +1,6 @@
 package hcmus.brightdemy.role.service;
 
+import hcmus.brightdemy.common.exception.InvalidDataException;
 import hcmus.brightdemy.role.dto.CreateRoleDTO;
 import hcmus.brightdemy.role.dto.RoleDTO;
 import hcmus.brightdemy.role.dto.RoleMapper;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -28,5 +30,14 @@ public class RoleServiceImpl implements RoleService{
 
         return roles.stream().map(o -> RoleMapper.INSTANCE.fromEntityToRoleDTO(o))
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public RoleDTO findById(int id) {
+        Optional<Role> role = roleRepository.findByRoleId(id);
+        if (!role.isPresent()) {
+            throw new InvalidDataException("Role is not existed. ");
+        }
+        return RoleMapper.INSTANCE.fromEntityToRoleDTO(role.get());
     }
 }

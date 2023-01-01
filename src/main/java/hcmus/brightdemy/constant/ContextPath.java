@@ -11,7 +11,6 @@ public class ContextPath {
         public static final String REGISTER = "/register";
         public static final String SEARCH = "/search";
 
-        public static final String LOGIN = "/login";
 
         public static final String DELETE = "/delete";
         public static final String GET_USER_BY_TOKEN = "/get-by-token";
@@ -32,4 +31,5 @@ public class ContextPath {
         public static final String CREATE = "create";
 
     }
+    public static final String LOGIN = "/login";
 }

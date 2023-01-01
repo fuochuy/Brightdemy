@@ -22,7 +22,7 @@ public class AuthController {
     @Autowired
     private AuthService authService;
 
-    @PostMapping(ContextPath.User.LOGIN)
+    @PostMapping(ContextPath.LOGIN)
     public Object login(@RequestBody @Valid LoginDTO dto, BindingResult bindingResult) {
         if(bindingResult.hasErrors()) {
             return ResponseHandler.getErrorResponse(bindingResult, HttpStatus.BAD_REQUEST);
