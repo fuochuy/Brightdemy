@@ -22,7 +22,7 @@ public interface UserRepository extends JpaRepository<User,String> {
     List<User> findAllPaging(Pageable pageable);
 
     List<User> findByUsernameContainingOrFullNameContaining(String key, String fullName, Pageable pageable);
-
+    @Query("FROM User user where user.token=?1")
     Optional<User> findByToken(String token);
     @Query("FROM User user where user.id=?1")
     Optional<User> findById(int id);

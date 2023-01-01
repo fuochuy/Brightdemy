@@ -74,7 +74,7 @@ public class UserController {
     }
 
     @PostMapping(ContextPath.User.GET_USER_BY_TOKEN)
-    public Object getByToken(@RequestBody String token){
+    public Object getByToken(@RequestParam String token){
         UserDTO userDTO = userService.getByToken(token);
         return new ResponseEntity<>(userDTO, HttpStatus.OK);
     }
