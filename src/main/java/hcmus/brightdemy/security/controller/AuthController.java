@@ -29,6 +29,7 @@ public class AuthController {
         }
         Object token = authService.login(dto);
 
+
         return new ResponseEntity<>(token, HttpStatus.OK);
     }
 

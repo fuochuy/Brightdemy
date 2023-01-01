@@ -8,7 +8,6 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
-import java.util.Date;
 
 
 @Getter
@@ -19,6 +18,7 @@ public class User extends BaseEntity {
     private static final long serialVersionUID = 4766770617680553069L;
     @Id
     @Column(name = "user_id")
+    @GeneratedValue
     private int id;
 
     @Column(name = "username")

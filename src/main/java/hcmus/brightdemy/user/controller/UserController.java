@@ -18,6 +18,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = ContextPath.User.PATH)
+@CrossOrigin(origins = ContextPath.CROSS_PATH)
 public class UserController {
     @Autowired
     private UserService userService;
@@ -52,8 +53,13 @@ public class UserController {
     }
     @GetMapping(ContextPath.User.LIST)
     public Object list(@RequestHeader String authorization) {
-        System.out.println("\n\n\n\n" + authorization);
         List<UserDTO> userDTOS = userService.list();
         return new ResponseEntity<>(userDTOS, HttpStatus.OK);
+    }
+
+    @PostMapping(ContextPath.User.GET_USER_BY_TOKEN)
+    public Object getByToken(@RequestBody String token){
+        UserDTO userDTO = userService.getByToken(token);
+        return new ResponseEntity<>(userDTO, HttpStatus.OK);
     }
 }

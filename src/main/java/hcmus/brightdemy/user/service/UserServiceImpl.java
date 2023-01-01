@@ -97,4 +97,15 @@ public class UserServiceImpl implements UserService {
         userDTO.setRoleId(createUser.getRole().getRole_id());
         return userDTO;
     }
+
+    @Override
+    public UserDTO getByToken(String token) {
+        Optional<User> user = userRepository.findByToken(token);
+        if (!user.isPresent()) {
+            throw new InvalidDataException("User is not existed. ");
+        }
+        UserDTO userDTO = UserMapper.INSTANCE.fromEntityToUserDTO(user.get());
+        userDTO.setRoleId(user.get().getRole().getRole_id());
+        return userDTO;
+    }
 }

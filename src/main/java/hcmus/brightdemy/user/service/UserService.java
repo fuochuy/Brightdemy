@@ -15,4 +15,6 @@ public interface UserService {
     List<UserDTO> list();
 
     UserDTO register(RegisterUserDTO dto);
+
+    UserDTO getByToken(String token);
 }

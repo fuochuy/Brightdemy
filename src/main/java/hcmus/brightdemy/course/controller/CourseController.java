@@ -18,6 +18,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = ContextPath.Course.PATH)
+@CrossOrigin(origins = ContextPath.CROSS_PATH)
 public class CourseController {
     @Autowired
     CourseService courseService;
