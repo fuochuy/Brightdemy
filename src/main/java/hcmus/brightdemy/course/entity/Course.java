@@ -41,4 +41,13 @@ public class Course extends BaseEntity {
     @Column(name = "training_time")
     private LocalDateTime trainingTime;
 
+    @Column(name="language")
+    private String language;
+
+    @Column(name="framework")
+    private String framework;
+
+    @Column(name="position")
+    private String position;
+
 }

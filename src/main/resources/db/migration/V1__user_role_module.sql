@@ -30,4 +30,4 @@ values(0,'USER','USER'),
       (1,'ADMIN','ADMIN'),
       (2,'OWNER','OWNER');
 insert into users(user_id, username,full_name,email, password,status,role_id)
-values(3,'admin','adminn','admin@brightdemy.com','$2a$10$R5hPELUnSGIhzcn5kodVSeBIOZuPxx4Ixy9V3wfJJR5i56yHaPXZm',0,1);
+values(3,'admin','admin','admin@brightdemy.com','$2a$10$R5hPELUnSGIhzcn5kodVSeBIOZuPxx4Ixy9V3wfJJR5i56yHaPXZm',0,1);

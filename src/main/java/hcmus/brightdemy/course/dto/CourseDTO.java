@@ -20,4 +20,12 @@ public class CourseDTO extends BaseDTO {
     private LocalDateTime openTime;
 
     private LocalDateTime trainingTime;
+
+    private String ownerName;
+
+    private String language;
+
+    private String framework;
+
+    private String position;
 }
