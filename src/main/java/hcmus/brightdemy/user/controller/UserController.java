@@ -48,7 +48,15 @@ public class UserController {
     @PostMapping(ContextPath.Admin.BLOCK + "/{id}")
     public Object blockUserById(@RequestHeader String authorization,@PathVariable int id) {
         userService.checkRole(authorization);
-        userService.blockUserById(id);
+        userService.updateStatusUserById(id,1);
+        return new ResponseEntity<>("Success", HttpStatus.OK);
+    }
+
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @PostMapping(ContextPath.Admin.ACTIVE + "/{id}")
+    public Object activeUserById(@RequestHeader String authorization,@PathVariable int id) {
+        userService.checkRole(authorization);
+        userService.updateStatusUserById(id,0);
         return new ResponseEntity<>("Success", HttpStatus.OK);
     }
 

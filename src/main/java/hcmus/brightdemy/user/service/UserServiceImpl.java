@@ -131,12 +131,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void blockUserById(int id) {
+    public void updateStatusUserById(int id, int status) {
         Optional<User> user = userRepository.findById(id);
         if (!user.isPresent()) {
             throw new InvalidDataException("User is not existed. ");
         }
-        user.get().setStatus(1);
+        user.get().setStatus(status);
         userRepository.save(user.get());
     }
 

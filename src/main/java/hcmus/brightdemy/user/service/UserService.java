@@ -22,7 +22,7 @@ public interface UserService {
 
     void deleteUserById(int id);
 
-    void blockUserById(int id);
+    void updateStatusUserById(int id, int status);
 
     UserDTO updateUser(String authorization,RegisterUserDTO userDTO);
 }

@@ -9,6 +9,8 @@ public class ContextPath {
         public static final String DELETE = "/delete";
 
         public static final String BLOCK = "/block";
+
+        public static final String ACTIVE = "/active";
     }
     public static class User {
         public static final String  PATH = "/api";
