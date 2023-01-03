@@ -123,6 +123,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public void checkUsernameExists(String username) {
+        Optional<User> user = userRepository.findByUsername(username);
+        if (user.isPresent()) {
+            throw new InvalidDataException("Username is existed. ");
+        }
+    }
+
+    @Override
     public void deleteUserById(int id) {
         Optional<User> user = userRepository.findById(id);
         if (!user.isPresent()) {

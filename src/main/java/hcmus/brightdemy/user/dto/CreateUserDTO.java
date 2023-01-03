@@ -22,16 +22,10 @@ public class CreateUserDTO {
     private static final long serialVersionUID = 4766770617680553069L;
 
 
-    @NotBlank(message = "{loai_nguoi_dung.id.not_blank}")
-    @Size(min = 3, max = 20, message = "{loai_nguoi_dung.id.size}")
-    @UniqueUsername
     private String username;
 
     private String fullName;
 
-    @NotBlank(message = "{loai_nguoi_dung.id.not_blank}")
-    @Size(min = 3, max = 20, message = "{loai_nguoi_dung.id.size}")
-    @UniqueEmail
     private String email;
 
 

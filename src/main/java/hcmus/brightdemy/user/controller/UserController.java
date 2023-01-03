@@ -31,6 +31,7 @@ public class UserController {
             return ResponseHandler.getErrorResponse(bindingResult, HttpStatus.BAD_REQUEST);
         }
         userService.checkRole(authorization);
+        userService.checkUsernameExists(dto.getUsername());
         UserDTO createUser = userService.create(dto);
 
         return new ResponseEntity<>(createUser, HttpStatus.OK);

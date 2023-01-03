@@ -20,9 +20,13 @@ public interface UserService {
 
     void checkRole(String authorization);
 
+    void checkUsernameExists(String username);
+
     void deleteUserById(int id);
 
     void updateStatusUserById(int id, int status);
 
     UserDTO updateUser(String authorization,RegisterUserDTO userDTO);
+
+
 }

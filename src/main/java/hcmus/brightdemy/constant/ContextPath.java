@@ -37,7 +37,9 @@ public class ContextPath {
     public static class Course {
         public static final String PATH = "api/course";
         public static final String LIST = "/list";
-        public static final String CREATE = "create";
+        public static final String CREATE = "/create";
+
+        public static final String JOIN ="/join";
 
     }
     public static final String LOGIN = "/login";

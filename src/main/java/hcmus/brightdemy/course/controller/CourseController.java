@@ -40,4 +40,15 @@ public class CourseController {
         return new ResponseEntity<>(createdCourse, HttpStatus.OK);
     }
 
+    @PostMapping(ContextPath.Course.JOIN)
+    public Object joinCourse(@RequestHeader String authorization,@Valid @RequestBody CreateCourseDTO dto, BindingResult bindingResult) {
+        if(bindingResult.hasErrors()) {
+            return ResponseHandler.getErrorResponse(bindingResult, HttpStatus.BAD_REQUEST);
+        }
+
+        CourseDTO createdCourse = courseService.create(dto);
+
+        return new ResponseEntity<>(createdCourse, HttpStatus.OK);
+    }
+
 }
