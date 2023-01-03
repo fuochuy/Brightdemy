@@ -25,11 +25,8 @@ public class RoleServiceImpl implements RoleService{
     }
 
     @Override
-    public List<RoleDTO> findAll() {
-        List<Role> roles = roleRepository.findAll();
-
-        return roles.stream().map(o -> RoleMapper.INSTANCE.fromEntityToRoleDTO(o))
-                .collect(Collectors.toList());
+    public List<Role> findAll() {
+        return roleRepository.findAll();
     }
 
     @Override

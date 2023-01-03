@@ -4,6 +4,7 @@ import hcmus.brightdemy.common.ResponseHandler;
 import hcmus.brightdemy.constant.ContextPath;
 import hcmus.brightdemy.role.dto.CreateRoleDTO;
 import hcmus.brightdemy.role.dto.RoleDTO;
+import hcmus.brightdemy.role.entity.Role;
 import hcmus.brightdemy.role.service.RoleService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -34,8 +36,20 @@ public class RoleController {
     }
     @GetMapping(ContextPath.Role.LIST)
     public Object getRoles() {
-        List<RoleDTO> roleDTOs = roleService.findAll();
-        return new ResponseEntity<>(roleDTOs, HttpStatus.OK);
+        List<Role> roles = roleService.findAll();
+        List<RoleDTO> roleDTOS = new ArrayList<>();
+        for(Role role: roles){
+            RoleDTO dto= new RoleDTO();
+            dto.setCreatedBy(role.getCreatedBy());
+            dto.setModifiedBy(role.getModifiedBy());
+            dto.setCreatedDate(role.getCreatedDate());
+            dto.setModifiedDate(role.getModifiedDate());
+            dto.setName(role.getName());
+            dto.setDescription(role.getDescription());
+            dto.setRoleId(role.getRole_id());
+            roleDTOS.add(dto);
+        }
+        return new ResponseEntity<>(roleDTOS, HttpStatus.OK);
     }
     @GetMapping("/{id}")
     public Object findById(@PathVariable int id){

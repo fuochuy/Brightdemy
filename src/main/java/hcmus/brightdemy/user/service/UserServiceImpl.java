@@ -76,6 +76,7 @@ public class UserServiceImpl implements UserService {
         for (User user : users) {
             UserDTO userDTO = UserMapper.INSTANCE.fromEntityToUserDTO(user);
             userDTO.setRoleId(user.getRole().getRole_id());
+            userDTO.setRoleName(user.getRole().getName());
             userDTOs.add(userDTO);
         }
         return userDTOs;

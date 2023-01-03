@@ -26,4 +26,6 @@ public class UserDTO extends BaseDTO {
     private int status;
 
     private Date endBlockTime;
+
+    private String roleName;
 }
